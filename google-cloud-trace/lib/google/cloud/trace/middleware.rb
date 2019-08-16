@@ -291,6 +291,18 @@ module Google
         end
 
         ##
+        # Gets the route from the given Rack environment.
+        # Replaces identifiers with :id
+        #
+        # @private
+        # @param [Hash] env Rack environment hash
+        # @return [String] The URL.
+        #
+        def get_route env
+          env["PATH_INFO"].gsub(/\b\d+\b/, ":id")
+        end
+
+        ##
         # Configures the root span for this request. This may be called
         # before the request is actually handled because it doesn't depend
         # on the result.
@@ -321,6 +333,8 @@ module Google
           set_label labels,
                     Google::Cloud::Trace::LabelKey::HTTP_CLIENT_PROTOCOL,
                     env["SERVER_PROTOCOL"]
+          set_label labels, Google::Cloud::Trace::LabelKey::HTTP_ROUTE,
+                    get_route(env)
           set_label labels, Google::Cloud::Trace::LabelKey::HTTP_USER_AGENT,
                     env["HTTP_USER_AGENT"]
           set_label labels, Google::Cloud::Trace::LabelKey::HTTP_URL,

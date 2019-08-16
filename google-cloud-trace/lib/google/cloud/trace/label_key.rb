@@ -35,6 +35,7 @@ module Google
         HTTP_REDIRECTED_URL = "/http/redirected_url".freeze
         HTTP_REQUEST_SIZE = "/http/request/size".freeze
         HTTP_RESPONSE_SIZE = "/http/response/size".freeze
+        HTTP_ROUTE = "/http/route".freeze
         HTTP_STATUS_CODE = "/http/status_code".freeze
         HTTP_URL = "/http/url".freeze
         HTTP_USER_AGENT = "/http/user_agent".freeze
